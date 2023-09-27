@@ -5,17 +5,17 @@ name: parallel-job-example
 on:
   # Manual trigger using the workflow_dispatch event
   workflow_dispatch:
-  
+
   # Automatic trigger on push events to the main branch
   push:
     branches:
       - master
-      
+
   # Automatic trigger on pull request events targeting the main branch
   pull_request:
     branches:
       - master
-      
+
   # Scheduled trigger at 5:00 AM UTC, Monday through Friday
   schedule:
     - cron: '0 5 * * 1-5'
@@ -66,10 +66,10 @@ jobs:
       - name: Print a message for non-main branches
         if: github.ref != 'refs/heads/main'
         run: echo "This is not the main branch."
-        
+
       - name: Run tests
         run: npm test
-        
+
       - name: Debug message
         if: env.DEBUG == 'true'
         run: echo "Debugging is enabled."
