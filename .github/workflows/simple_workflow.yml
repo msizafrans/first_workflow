@@ -1,16 +1,22 @@
-name: SimpleExample
+name: My First Workflow
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  example:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-    # Checkout
-    - uses: actions/checkout@v3
-    # Build
-    - uses: actions/setup-python@v4
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    - name: Use Node.js 18
+      uses: actions/setup-node@v3
       with:
-        python-version: '3.10'
-    - run: python my_script.py
-# This is a simple workflow for a python app
+        node-version: 18
+
+    - name: Print a message
+      run: echo "Hello, world!"
